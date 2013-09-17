@@ -1,6 +1,6 @@
-#A haskell solution for Conway's GAME OF LIFE
+##A haskell solution for Conway's GAME OF LIFE
 
-## Internals
+### Internals
 
     type Location = (Int, Int)
 
