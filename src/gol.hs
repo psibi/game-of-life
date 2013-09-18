@@ -1,17 +1,5 @@
 module Gol where
---import Conway (World, Location)
-
-import Data.List (nub)
-
-type Location = (Int, Int)
-
-data Cell = Alive | Dead deriving (Eq)
-
-type World = [(Location, Cell)]
-
-instance Show Cell where
-  show Alive = "Alive Cell"
-  show Dead = "Dead Cell"
+import Conway
 
 -- Returns the max coordinates of a world
 max_coordinate :: World -> Location
