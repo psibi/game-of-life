@@ -40,11 +40,21 @@ neighbours loc = case loc of (a,b) -> filter (\x -> x /= loc) all_neighbours
                                       where all_neighbours = [(x,y) | x <- [a-1..a+1], y <- [b-1..b+1],  x >= 0, y >= 0]
 
 -- Returns the number of alive neighbours for a cell
-alive_neighbours :: World -> Location -> Int
-alive_neighbours world loc = foldl (\acc x -> if x==Alive then acc+1 else acc) 0 neighbour_states
+num_alive_neighbours :: World -> Location -> Int
+num_alive_neighbours world loc = foldl (\acc x -> if x==Alive then acc+1 else acc) 0 neighbour_states
     where neighbour_states = map (\x -> cell_state world x) (neighbours loc)
 
---time_step :: World -> World
---time_step world = 
+-- Returns the location of all alive neighbours
+alive_neighbours :: World -> Location -> [Location]
+alive_neighbours world loc = filter (\x -> cell_state world x == Alive) (neighbours loc)
+
+-- Returns the location of all dead neighbours
+dead_neighbours :: World -> Location -> [Location]
+dead_neighbours world loc = filter (\x -> cell_state world x == Dead) (neighbours loc)
+
+
+-- One time step for the game of life
+-- time_step :: World -> World
+-- time_step world = 
 
 --let world_data = [((0,0), Alive), ((0,1), Dead), ((0,2), Alive), ((0,3), Dead),((1,0), Alive), ((1,1), Dead), ((1,2), Alive), ((1,3), Dead),((2,0), Alive), ((2,1), Alive), ((2,2), Dead), ((2,3), Alive),((3,0), Alive), ((3,1), Dead), ((3,2), Alive), ((3,3), Alive)] :: World
